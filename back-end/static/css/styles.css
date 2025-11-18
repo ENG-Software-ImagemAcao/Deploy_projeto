@@ -1,286 +1,267 @@
 /* ===========================
-      CONFIGURAÇÕES GLOBAIS
-=========================== */
+   RESET / GLOBAIS
+   =========================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
 
 body {
     background-color: #f4dca1;
-    font-family: Arial, sans-serif;
-    text-align: center;
+    font-family: "Arial", sans-serif;
     margin: 0;
-    padding: 0;
+    color: #222;
 }
+
+
+/* ===========================
+   CONTAINER PADRÃO
+   =========================== */
 
 .container {
     width: 90%;
     max-width: 1100px;
-    margin: auto;
-    padding-top: 40px;
+    margin: 40px auto;
+    text-align: center;
+    padding-bottom: 40px;
 }
 
 
-/* Logo padrão */
+/* ===========================
+   LOGOS
+   =========================== */
+
+.logo,
+.logo-home {
+    display: block;
+    margin: 0 auto 20px auto;
+    height: auto;
+}
 
 .logo {
     width: 160px;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px auto;
+}
+
+.logo-home {
+    width: 180px;
+    position: absolute;
+    top: 20px;
+    left: 30px;
 }
 
 
 /* ===========================
-      TÍTULOS GERAIS
-=========================== */
+   TITULOS
+   =========================== */
 
-.title {
-    font-size: 50px;
-    font-weight: bold;
+.title,
+.title-home {
     color: #e85b00;
     text-shadow: 4px 4px 0px #ffcc6a;
-    margin-bottom: 40px;
+    margin: 0 0 30px 0;
+    font-weight: 700;
 }
 
-.subtitle {
-    font-size: 22px;
-    color: #e85b00;
-    margin-bottom: 10px;
-    font-weight: bold;
-    text-shadow: 2px 2px 0px #ffcc6a;
+.title {
+    font-size: 48px;
+}
+
+.title-home {
+    font-size: 60px;
+    margin-top: 220px;
 }
 
 
 /* ===========================
-      FORMULÁRIOS EM COLUNAS
-=========================== */
+   LINKS
+   =========================== */
+
+.home-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 18px;
+    color: #000;
+    text-decoration: underline;
+}
+
+.home-link:hover {
+    opacity: 0.8;
+}
+
+
+/* ===========================
+   CATEGORIAS (grid)
+   =========================== */
+
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.category-card {
+    min-width: 200px;
+    padding: 16px 22px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 6px 0 #e9c56a;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .08s;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ===========================
+   FORMULARIO (colunas)
+   =========================== */
 
 .form-row {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 40px;
     gap: 40px;
+    margin-bottom: 40px;
 }
 
 .column {
+    width: 40%;
     display: flex;
     flex-direction: column;
-    width: 40%;
 }
 
-.column input {
-    margin: 8px 0;
+.column input,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     padding: 12px;
+    margin: 8px 0;
     border-radius: 6px;
     border: none;
-    width: 100%;
     font-size: 16px;
+    width: 100%;
 }
-
-
-/* ===========================
-      ÁREA DO NICKNAME
-=========================== */
 
 .nickname-area {
     width: 40%;
     margin: 0 auto 30px auto;
 }
 
-.nickname-area input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 6px;
-    border: none;
-    font-size: 16px;
-}
-
 
 /* ===========================
-      BOTÕES
-=========================== */
+   BOTAO PADRÃO
+   =========================== */
 
 .btn {
-    background-color: black;
-    color: white;
-    padding: 14px;
-    width: 240px;
-    border: none;
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 14px 24px;
     border-radius: 8px;
+    border: none;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 17px;
 }
 
 .btn:hover {
-    opacity: 0.85;
+    opacity: .9;
 }
 
 
 /* ===========================
-      HOMEPAGE
-=========================== */
-
-.logo-home {
-    width: 180px;
-    height: auto;
-    position: absolute;
-    top: 30px;
-    left: 40px;
-}
-
-.title-home {
-    font-size: 60px;
-    color: #e85b00;
-    text-shadow: 4px 4px 0px #ffcc6a;
-    margin-top: 240px;
-}
-
-.home-link {
-    display: block;
-    margin-top: 25px;
-    font-size: 22px;
-    font-weight: bold;
-    text-decoration: underline;
-    color: #000;
-}
-
-.home-link:hover {
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-
-/* ===========================
-      PÁGINA DE REGRAS
-=========================== */
-
-.rules-container {
-    width: 80%;
-    max-width: 900px;
-    background-color: #fff8da;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.rules-container h2 {
-    font-size: 40px;
-    color: #e85b00;
-    text-shadow: 3px 3px 0px #ffcc6a;
-    margin-bottom: 25px;
-}
-
-.rules-text {
-    text-align: justify;
-    font-size: 20px;
-    line-height: 1.5;
-    font-weight: bold;
-}
-
-
-/* ===========================
-      PÁGINA DE TEMPO
-=========================== */
-
-.time-options {
-    width: 70%;
-    margin: 30px auto;
-}
-
-.time-box {
-    background: white;
-    padding: 18px;
-    margin: 12px 0;
-    border-radius: 10px;
-    font-size: 26px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.time-box:hover {
-    background-color: #ffe8a8;
-}
-
-
-/* ===========================
-      DESENHO (CANVAS)
-=========================== */
+   DRAW / DESENHO
+   =========================== */
 
 .draw-container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin: 120px auto 60px;
+    text-align: center;
+    padding: 20px;
+}
+
+.draw-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
 .draw-title {
-    font-size: 45px;
-    font-weight: bold;
+    font-size: 34px;
     color: #e85b00;
-    text-shadow: 3px 3px 0px #ffcc6a;
 }
 
-.word-box {
-    background-color: #fff8da;
-    padding: 12px;
-    width: 350px;
-    margin: 20px auto;
-    border-radius: 10px;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-#canvas {
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 10px;
-    width: 850px;
-    height: 500px;
-    margin-top: 20px;
-}
-
-.btn-clean {
-    margin-top: 20px;
-    background-color: #d82626;
-    color: white;
-    padding: 12px 22px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+.draw-timer {
+    font-weight: 700;
     font-size: 18px;
 }
 
-.btn-clean:hover {
-    opacity: .8;
+.word-box {
+    background: #fff;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin: 18px 0;
+    box-shadow: 0 4px 0 #e9c56a;
 }
 
-.footer-buttons {
-    margin-top: 25px;
+
+/* canvas */
+
+#canvas {
+    display: block;
+    margin: 18px auto;
+    max-width: 100%;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 8px 0 #e9c56a;
+}
+
+
+/* ações da área de desenho */
+
+.draw-actions {
     display: flex;
-    justify-content: space-between;
-    padding: 0 80px;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 12px;
 }
 
 
 /* ===========================
-      RESPONSIVIDADE
-=========================== */
+   RESPONSIVIDADE
+   =========================== */
 
-@media (max-width: 800px) {
+@media (max-width:900px) {
     .form-row {
         flex-direction: column;
         align-items: center;
     }
     .column {
-        width: 80%;
+        width: 90%;
     }
     .nickname-area {
-        width: 80%;
+        width: 90%;
     }
-    #canvas {
-        width: 95%;
-        height: 350px;
+    .title-home {
+        font-size: 40px;
+        margin-top: 160px;
     }
-    .footer-buttons {
-        flex-direction: column;
-        gap: 20px;
+    .logo-home {
+        position: static;
+        margin-bottom: 8px;
+    }
+    .draw-container {
+        margin-top: 60px;
+        padding: 8px;
     }
 }

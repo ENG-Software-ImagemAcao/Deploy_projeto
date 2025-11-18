@@ -171,6 +171,47 @@ def handle_clear(data):
     room = data['room']
     emit('clear_canvas', {}, to=room)
 
+# GET /api/categories -> lista categorias JSON
+@app.route('/api/categories')
+def api_categories():
+    conn = get_conn()
+    cur = conn.cursor()
+    cur.execute("SELECT id, name FROM categories ORDER BY name")
+    rows = cur.fetchall()
+    cur.close(); conn.close()
+    return {"categories":[{"id":r[0],"name":r[1]} for r in rows]}
+
+# GET /api/words?category_id=#
+@app.route('/api/words')
+def api_words():
+    category_id = request.args.get('category_id', None)
+    conn = get_conn()
+    cur = conn.cursor()
+    if category_id:
+        cur.execute("SELECT id, text FROM words WHERE category_id=%s ORDER BY text", (category_id,))
+    else:
+        cur.execute("SELECT id, text FROM words ORDER BY text")
+    rows = cur.fetchall()
+    cur.close(); conn.close()
+    return {"words":[{"id":r[0],"text":r[1]} for r in rows]}
+
+@app.route('/criar_game', methods=['POST'])
+def criar_game():
+    room = random_room()
+
+    category_id = request.form.get('category_id')  # opcional
+    tempo = request.form.get('tempo')  # opcional
+
+    conn = get_conn()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO games (room, word_id) VALUES (%s, NULL) RETURNING id", (room,))
+    # se quiser salvar categoria/tempo, crie colunas na tabela games (category_id, tempo)
+    conn.commit()
+    cur.close(); conn.close()
+
+    return redirect(url_for('desenhar', room=room))
+
+
 
 # ---------------------------------------------------
 #  6 — Run

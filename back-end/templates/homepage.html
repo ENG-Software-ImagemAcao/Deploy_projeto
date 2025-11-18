@@ -1,27 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
+    <meta charset="utf-8">
+    <title>Homepage - Jogo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body>
-
+<body class="page-home">
+    <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo-home" alt="logo">
     <div class="page-container">
-
-        <!-- Logo -->
-        <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo-home" alt="Logo">
-
-        <!-- Título principal -->
         <h1 class="title-home">Jogar agora!</h1>
-
-        <!-- Link como jogar -->
-        <a href="#" class="home-link">Como jogar?</a>
-
+        <a href="{{ url_for('categorias') }}" class="home-link">Escolher categoria</a>
+        <a href="{{ url_for('tempo') }}" class="home-link">Escolher tempo</a>
     </div>
-
 </body>
 
 </html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tempo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo" alt="logo">
+        <h1 class="title">Quanto tempo?</h1>
+
+        <div class="time-options">
+            <form action="{{ url_for('criar_game') }}" method="post">
+                <input type="hidden" name="tempo" value="30">
+                <button class="btn" type="submit">30 segundos</button>
+            </form>
+
+            <form action="{{ url_for('criar_game') }}" method="post">
+                <input type="hidden" name="tempo" value="45">
+                <button class="btn" type="submit">45 segundos</button>
+            </form>
+
+            <form action="{{ url_for('criar_game') }}" method="post">
+                <input type="hidden" name="tempo" value="60">
+                <button class="btn" type="submit">60 segundos</button>
+            </form>
+
+            <form action="{{ url_for('criar_game') }}" method="post">
+                <input type="hidden" name="tempo" value="90">
+                <button class="btn" type="submit">90 segundos</button>
+            </form>
+        </div>
+
+        <a href="{{ url_for('categorias') }}" class="home-link">&lt; VOLTAR</a>
+    </div>
+</body>
+
+</html>

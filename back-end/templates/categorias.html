@@ -1,63 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Selecione as categorias</title>
-
-    <!-- CSS global -->
+    <meta charset="utf-8">
+    <title>Categorias</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body class="categorias-body">
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo" alt="logo">
+        <h1 class="title">Escolha uma categoria</h1>
 
-    <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo-categorias">
-
-    <h1 class="categorias-title">Selecione as categorias</h1>
-
-    <div class="categorias-container">
-
-        <div class="coluna-esq">
-            <label class="categoria-item">
-                <input type="checkbox" class="categoria-checkbox">
-                <span class="categoria-texto">Animais</span>
-            </label>
-
-            <label class="categoria-item">
-                <input type="checkbox" class="categoria-checkbox">
-                <span class="categoria-texto">Frutas</span>
-            </label>
-
-            <label class="categoria-item">
-                <input type="checkbox" class="categoria-checkbox">
-                <span class="categoria-texto">Séries</span>
-            </label>
+        <div class="categories-grid">
+            {% for id,name in categorias %}
+            <form action="{{ url_for('criar_game') }}" method="post" style="display:inline;">
+                <input type="hidden" name="category_id" value="{{ id }}">
+                <button class="category-card btn" type="submit">{{ name }}</button>
+            </form>
+            {% endfor %}
         </div>
 
-        <div class="coluna-dir">
-            <label class="categoria-item">
-                <input type="checkbox" class="categoria-checkbox">
-                <span class="categoria-texto">Objetos</span>
-            </label>
-
-            <label class="categoria-item">
-                <input type="checkbox" class="categoria-checkbox">
-                <span class="categoria-texto">Filmes</span>
-            </label>
-
-            <label class="categoria-item">
-                <input type="checkbox" class="categoria-checkbox">
-                <span class="categoria-texto">Verbos</span>
-            </label>
-        </div>
-
+        <a href="{{ url_for('homepage') }}" class="home-link">&lt; VOLTAR</a>
     </div>
-
-    <div class="categorias-footer">
-        <a href="/regras" class="categorias-voltar">&lt; VOLTAR</a>
-        <a href="/jogo" class="categorias-proximo">PRÓXIMO &gt;</a>
-    </div>
-
 </body>
 
 </html>
