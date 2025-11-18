@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LOGO -->
+        <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo">
+
+        <!-- TÍTULO -->
+        <h1 class="title">Criar Conta</h1>
+
+        <!-- FORMULÁRIO -->
+        <form>
+
+            <div class="form-row">
+                <div class="column">
+                    <h3>Crie seu cadastro</h3>
+                    <input type="email" placeholder="email@gmail.com">
+                    <input type="email" placeholder="email@gmail.com">
+                </div>
+
+                <div class="column">
+                    <h3>Coloque sua senha</h3>
+                    <input type="password" placeholder="Insira sua senha...">
+                    <input type="password" placeholder="Confirma sua senha...">
+                </div>
+            </div>
+
+            <!-- NICKNAME -->
+            <div class="nickname-area">
+                <h3>Crie seu nickname</h3>
+                <input type="text" placeholder="Nickname">
+            </div>
+
+            <!-- BOTÃO -->
+            <button class="btn">Criando Acesso</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

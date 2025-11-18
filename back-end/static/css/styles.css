@@ -1,0 +1,286 @@
+/* ===========================
+      CONFIGURAÇÕES GLOBAIS
+=========================== */
+
+body {
+    background-color: #f4dca1;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding-top: 40px;
+}
+
+
+/* Logo padrão */
+
+.logo {
+    width: 160px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+
+/* ===========================
+      TÍTULOS GERAIS
+=========================== */
+
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #e85b00;
+    text-shadow: 4px 4px 0px #ffcc6a;
+    margin-bottom: 40px;
+}
+
+.subtitle {
+    font-size: 22px;
+    color: #e85b00;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 2px 2px 0px #ffcc6a;
+}
+
+
+/* ===========================
+      FORMULÁRIOS EM COLUNAS
+=========================== */
+
+.form-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    gap: 40px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.column input {
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+}
+
+
+/* ===========================
+      ÁREA DO NICKNAME
+=========================== */
+
+.nickname-area {
+    width: 40%;
+    margin: 0 auto 30px auto;
+}
+
+.nickname-area input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+}
+
+
+/* ===========================
+      BOTÕES
+=========================== */
+
+.btn {
+    background-color: black;
+    color: white;
+    padding: 14px;
+    width: 240px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+
+/* ===========================
+      HOMEPAGE
+=========================== */
+
+.logo-home {
+    width: 180px;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+}
+
+.title-home {
+    font-size: 60px;
+    color: #e85b00;
+    text-shadow: 4px 4px 0px #ffcc6a;
+    margin-top: 240px;
+}
+
+.home-link {
+    display: block;
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000;
+}
+
+.home-link:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+
+/* ===========================
+      PÁGINA DE REGRAS
+=========================== */
+
+.rules-container {
+    width: 80%;
+    max-width: 900px;
+    background-color: #fff8da;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.rules-container h2 {
+    font-size: 40px;
+    color: #e85b00;
+    text-shadow: 3px 3px 0px #ffcc6a;
+    margin-bottom: 25px;
+}
+
+.rules-text {
+    text-align: justify;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+
+/* ===========================
+      PÁGINA DE TEMPO
+=========================== */
+
+.time-options {
+    width: 70%;
+    margin: 30px auto;
+}
+
+.time-box {
+    background: white;
+    padding: 18px;
+    margin: 12px 0;
+    border-radius: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.time-box:hover {
+    background-color: #ffe8a8;
+}
+
+
+/* ===========================
+      DESENHO (CANVAS)
+=========================== */
+
+.draw-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.draw-title {
+    font-size: 45px;
+    font-weight: bold;
+    color: #e85b00;
+    text-shadow: 3px 3px 0px #ffcc6a;
+}
+
+.word-box {
+    background-color: #fff8da;
+    padding: 12px;
+    width: 350px;
+    margin: 20px auto;
+    border-radius: 10px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#canvas {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 850px;
+    height: 500px;
+    margin-top: 20px;
+}
+
+.btn-clean {
+    margin-top: 20px;
+    background-color: #d82626;
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-clean:hover {
+    opacity: .8;
+}
+
+.footer-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 80px;
+}
+
+
+/* ===========================
+      RESPONSIVIDADE
+=========================== */
+
+@media (max-width: 800px) {
+    .form-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .column {
+        width: 80%;
+    }
+    .nickname-area {
+        width: 80%;
+    }
+    #canvas {
+        width: 95%;
+        height: 350px;
+    }
+    .footer-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

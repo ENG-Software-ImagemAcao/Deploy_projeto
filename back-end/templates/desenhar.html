@@ -1,0 +1,227 @@
+<!-- templates/desenhar.html -->
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Desenhar - Sala {{ room }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js" integrity="" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        /* estilos mínimos locais para esta tela */
+        
+        .draw-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        #canvas {
+            border: 4px solid #2aa6e6;
+            background: #e9a97a;
+            display: block;
+            margin: 10px auto;
+            width: 90%;
+            height: 500px;
+            touch-action: none;
+        }
+        
+        .word-box {
+            font-weight: bold;
+            background: #f0b57d;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .footer-buttons {
+            display: flex;
+            justify-content: space-between;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        
+        .btn-clean {
+            margin: 10px 0;
+            padding: 8px 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo-home" alt="logo">
+    <div class="draw-container">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2 class="title-home">Desenhe!</h2>
+            <h3 class="title-home">Tempo: {{ tempo }}s</h3>
+        </div>
+
+        <div class="word-box">Palavra: <span id="word-text">{{ palavra }}</span></div>
+
+        <canvas id="canvas"></canvas>
+
+        <div>
+            <button class="btn-clean" id="clearBtn">Limpar Tela</button>
+        </div>
+
+        <div class="footer-buttons">
+            <a href="/tempo" class="home-link">&lt; VOLTAR</a>
+            <a href="/resultado" class="home-link">PRÓXIMO &gt;</a>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+
+        const room = "{{ room }}";
+        socket.emit('join', {
+            room: room,
+            username: 'user'
+        });
+
+        const canvas = document.getElementById('canvas');
+        // ajuste de tamanho do canvas para corresponder ao CSS (pixel ratio)
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const ctx = canvas.getContext('2d');
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#111';
+        ctx.lineWidth = 6;
+
+        let drawing = false;
+
+        function getPos(e) {
+            if (e.touches && e.touches.length > 0) {
+                return {
+                    x: e.touches[0].clientX - canvas.getBoundingClientRect().left,
+                    y: e.touches[0].clientY - canvas.getBoundingClientRect().top
+                };
+            } else {
+                return {
+                    x: e.clientX - canvas.getBoundingClientRect().left,
+                    y: e.clientY - canvas.getBoundingClientRect().top
+                };
+            }
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            drawing = true;
+            const p = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            socket.emit('draw', {
+                room,
+                event: 'mousedown',
+                x: p.x,
+                y: p.y,
+                color: ctx.strokeStyle,
+                width: ctx.lineWidth
+            });
+        });
+        canvas.addEventListener('mousemove', (e) => {
+            if (!drawing) return;
+            const p = getPos(e);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+            socket.emit('draw', {
+                room,
+                event: 'mousemove',
+                x: p.x,
+                y: p.y,
+                color: ctx.strokeStyle,
+                width: ctx.lineWidth
+            });
+        });
+        window.addEventListener('mouseup', (e) => {
+            if (!drawing) return;
+            drawing = false;
+            socket.emit('draw', {
+                room,
+                event: 'mouseup'
+            });
+        });
+
+        // touch support
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            drawing = true;
+            const p = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            socket.emit('draw', {
+                room,
+                event: 'mousedown',
+                x: p.x,
+                y: p.y,
+                color: ctx.strokeStyle,
+                width: ctx.lineWidth
+            });
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (!drawing) return;
+            const p = getPos(e);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+            socket.emit('draw', {
+                room,
+                event: 'mousemove',
+                x: p.x,
+                y: p.y,
+                color: ctx.strokeStyle,
+                width: ctx.lineWidth
+            });
+        });
+        canvas.addEventListener('touchend', (e) => {
+            drawing = false;
+            socket.emit('draw', {
+                room,
+                event: 'mouseup'
+            });
+        });
+
+        // receber eventos de desenho da sala
+        socket.on('draw', (data) => {
+            if (!data) return;
+            ctx.strokeStyle = data.color || '#111';
+            ctx.lineWidth = data.width || 6;
+            if (data.event === 'mousedown') {
+                ctx.beginPath();
+                ctx.moveTo(data.x, data.y);
+            } else if (data.event === 'mousemove') {
+                ctx.lineTo(data.x, data.y);
+                ctx.stroke();
+            } else if (data.event === 'mouseup') {
+                // finaliza
+            }
+        });
+
+        // limpar canvas (evento recebido)
+        socket.on('clear_canvas', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            socket.emit('clear_canvas', {
+                room
+            });
+        });
+
+        // opcional: status messages
+        socket.on('status', (m) => {
+            console.log('status', m);
+        });
+    </script>
+</body>
+
+</html>

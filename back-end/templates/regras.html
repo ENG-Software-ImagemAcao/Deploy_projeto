@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Regras</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="rules-page">
+
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo-rules">
+
+    <div class="rules-container">
+
+        <h1 class="rules-title">Como jogar?</h1>
+
+        <h2 class="rules-subtitle">Regras:</h2>
+
+        <ul class="rules-list">
+            <li>Reúna um grupo de pelo menos duas pessoas ou mais. Quanto mais, melhor.</li>
+
+            <li>Escolha um jogador para iniciar a partida. O jogador escolherá uma palavra ou frase para representar através de desenho.</li>
+
+            <li>O resto do grupo deve tentar adivinhar o que está sendo desenhado. E com um tempo limite para descobrir. Geralmente de 1 a 2 minutos.</li>
+
+            <li>Se o grupo adivinhar corretamente, a pessoa que adivinhou corretamente fica com a próxima vez para representar uma palavra ou frase. Se o grupo não adivinhar corretamente, a pessoa que escolheu a palavra pode dar dicas extras ou passar a vez.</li>
+
+            <li>O jogo continua até que todos tenham tido uma chance de representar uma palavra ou frase ou até que todos estejam cansados de jogar.</li>
+        </ul>
+
+        <!-- Navegação -->
+        <div class="rules-nav">
+            <a href="/homepage" class="rules-btn-left">&lt; VOLTAR</a>
+            <a href="/proximo" class="rules-btn-right">PRÓXIMO &gt;</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

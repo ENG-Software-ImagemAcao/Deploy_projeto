@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerar nova palavra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <img src="{{ url_for('static', filename='imagem/logo.png') }}" class="logo-home">
+
+    <div class="page-container">
+
+        <h1 class="title-home">Gerar nova palavra :</h1>
+
+        <form method="POST">
+
+            <!-- Seleção de categoria -->
+            <div class="categoria-select">
+                <label for="categoria">Selecione a categoria:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">-- Escolha --</option>
+                    <option value="animais">Animais</option>
+                    <option value="objetos">Objetos</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="filmes">Filmes</option>
+                    <option value="series">Séries</option>
+                    <option value="verbos">Verbos</option>
+                </select>
+            </div>
+
+            <!-- Caixa onde usuário escreve a palavra -->
+            <div class="input-nova-palavra">
+                <input type="text" name="nova_palavra" placeholder="Digite a nova palavra" required>
+            </div>
+
+            <button type="submit" class="btn">Adicionar Palavra</button>
+
+        </form>
+
+        <div class="nav-footer">
+            <a href="/tempo" class="voltar">&lt; VOLTAR</a>
+            <a href="/jogo" class="proximo">PRÓXIMO &gt;</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
